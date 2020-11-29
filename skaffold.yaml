@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:            #List out all the config files we need in our cluster
+  kubectl: 
+    manifests:
+      - ./infra/k8s/*
+build: 
+  local:
+    push: false
+  artifacts:
+    - image: hungryshark/auth
+      context: auth
+      docker:
+        dockerfile : Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/.ts'
+            dest: .             # where to sync this file to inside of our running container the dot 
+                                # means basically just take wherever the file was found from and throw
+                                # it to the corresponding path inside the container.
