@@ -1,5 +1,6 @@
 import { CustomError } from './custom-error';
 
+//Defining a new Custom error
 export class NotFoundError extends CustomError {
     statusCode = 404;
     constructor(){
