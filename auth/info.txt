@@ -6,3 +6,16 @@ auth service
 /api/users/signin        POST   {email: string, password: string}   Sign in to an existing account
 /api/users/signout       POST                {}                     Sign Out
 /api/users/currentuser   GET                  -                     Return info about the user
+
+
+
+Database : MongoDB
+MongoDB + TypeScript hai some issues 
+
+# Issue 1 :
+When User module is taken into consideration, the User object of mongoose doesnot specfically specify
+the arguments that are going to be passed. Hence TypeScript would allow any kind of typo as well.
+
+# Issue 2 :
+Other properties may also get added by mongoose to a user document. Therefore TypeScript must be able 
+to distinguish between the two.
