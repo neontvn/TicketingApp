@@ -17,4 +17,10 @@ Option 2 better option as there is no dependency between the services
 
 Workaround :  Having refresh tokens we can set time after which we request for the refresh
               token. Also, we can have a short lived memory cache which will have a lifetime of
-              time after which we refresh our token say 15min
+              token after which we refresh our token say 15min
+
+Cookies vs JWTs
+
+Transport Mechanism ---- Authentication Mechanism
+Moves any kind of data betwn browser and server ---- Stores any data we want
+Automatically managed by browser ---- Has to be managed manually
