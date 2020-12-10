@@ -1,0 +1,20 @@
+- A generic User model is created to actually simplify the process of authentication
+- The user email and password ( hashed using a hashing function ) is checked here.
+- Password class is created which has this static functions toHash and compare that
+  return the hashed password and a check if the password input is correct or not 
+
+- Issue : How to make sure that the services get to know the user is currently logged in?
+
+Option 1: Individual services rely on the auth service
+            - Changes to auth state immediately reflected
+            - Auth service goes down ? Entire app is broken
+
+Option 2: Individual services know to authenticate a user
+            - Auth service is down? Who cares!
+            - Some user got banned? Might be possible that token was already given to user
+
+Option 2 better option as there is no dependency between the services
+
+Workaround :  Having refresh tokens we can set time after which we request for the refresh
+              token. Also, we can have a short lived memory cache which will have a lifetime of
+              time after which we refresh our token say 15min
