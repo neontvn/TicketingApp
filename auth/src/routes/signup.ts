@@ -44,14 +44,14 @@ async (req : Request,res : Response )=>{
 
     await user.save();
     
-    // Generate token
+    // Generate Token using jsonwebtoken
 
     const userJWT = jwt.sign({
         id : user.id,
         email : user.email
     },"sfsffs");
 
-    // Store it in a session object
+    // Store it in a Session object
     req.session = {
         jwt : userJWT
     }
