@@ -1,2 +1,19 @@
 Testing with Microservices
 
+Jest - JavaScript Testing Framework
+
+When jest starts 
+    -   It will start the in-memory copy of Mongodb
+    -   Start our express app
+    -   Use supertest library to make fake requests to our express app
+    -    Run the assertions
+
+Testing Architecture
+
+supertest expects to have app as a parameter to its request function. Hence I have
+pulled out the creation of app logic outside the index.ts file into another file called
+app.ts
+
+Installed Dependencies : 
+
+npm install --save-dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server
