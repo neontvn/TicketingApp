@@ -7,6 +7,9 @@ When jest starts
     -   Start our express app
     -   Use supertest library to make fake requests to our express app
     -    Run the assertions
+    
+Jest doesnt support typescript out-of-the-box. Therefore I've installed ts-jest for the
+typescript compatibility
 
 Testing Architecture
 
