@@ -1,3 +1,5 @@
+Server side rendered React application based on microservices architecture using docker and k8s
+
 auth service
 
     Route               Method              Body                        Purpose
@@ -19,3 +21,5 @@ the arguments that are going to be passed. Hence TypeScript would allow any kind
 # Issue 2 :
 Other properties may also get added by mongoose to a user document. Therefore TypeScript must be able 
 to distinguish between the two.
+
+

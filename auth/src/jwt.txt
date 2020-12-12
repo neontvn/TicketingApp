@@ -1,0 +1,51 @@
+Generating a JWT
+
+ > import jwt from jsonwebtoken
+
+jwt.sign(payload, secretOrPrivateKey, [options, callback])
+
+(Asynchronous) If a callback is supplied, the callback is called with the err or the JWT.
+(Synchronous) Returns the JsonWebToken as string
+
+_________________________________________________________________________________________________________
+
+ > The initial requrest cannot be customized in any way possible. and hence browser cookies are the only
+ way possible to send any kind of info to the backend.
+
+We store this above generated jwt in a session object using the following syntax
+
+Cookie session is set usng the cookie-session middleware in index.ts
+
+req.session = {
+    jwt : userJWT
+}
+
+Since we set secure = true in the cookie-session we have to access our site through https
+this returns the cookie object and it contains a base64 encoded jwt
+
+To get the jwt object we decode the base64 string to plain UTF-8. If we check jwt.io and verify 
+signature we can check if the token is valid using the jwt signing and also decode to get the payload. 
+If any one changes the jwt string then the upon using the signing key it returns an invalid signature.
+
+So there is a need for sharing the signing key with all the other services securely. So the signing key
+mustn't be plian text.
+
+_________________________________________________________________________________________________________
+
+Securely sharing information with all the services
+
+This can be achieved using a feature inside k8s that is designed for sharing secret info among the 
+different services of our application.
+
+- We create a new kind of object, "Secret" inside our cluster containing key-value pairs of info
+    eg JWT_KEY = 'asfds'
+- Once created can be loaded into containers that are created in our pods
+- Secret will be exposed as ENVIRONMENT_VARAIBLE
+
+Creating a Secret
+
+kubectl create secret generic jwt-secret --from-literal=xxx=yyy
+
+generic : type of secret
+jwt-secret : name given to the pod
+=xxx=yyy : key-value pair
