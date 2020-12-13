@@ -18,3 +18,12 @@ build:
             dest: .             # where to sync this file to inside of our running container the dot 
                                 # means basically just take wherever the file was found from and throw
                                 # it to the corresponding path inside the container.
+
+    - image: hungryshark/client
+      context: client
+      docker:
+        dockerfile : Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .  
