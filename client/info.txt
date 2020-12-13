@@ -1,0 +1,4 @@
+React app made using NextJS for the auth service
+
+NextJS - the names of files are considered as routes
+         For eg. localhost:3000/file_name is a route
