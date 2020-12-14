@@ -2,4 +2,11 @@ React app made using NextJS for the auth service
 
 NextJS - the names of files are considered as routes
          For eg. localhost:3000/file_name is a route
-         
+
+By default, Next.js pre-renders every page. This means that Next.js generates HTML for
+each page in advance, instead of having it all done by client-side JavaScript. Pre-rendering 
+can result in better performance and SEO.
+
+Each generated HTML is associated with minimal JavaScript code necessary for that page. 
+When a page is loaded by the browser, its JavaScript code runs and makes the page fully interactive. 
+(This process is called hydration.)
