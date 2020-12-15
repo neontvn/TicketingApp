@@ -5,15 +5,36 @@ import axios from 'axios'; // Why not use the useRequest hook?? Reason being hoo
 //  server side rendering process. It can be done only using the getInitialProps
 
 const LandingPage =  ({ currentUser }) => {
-    console.log(currentUser)
+    console.log(currentUser);    
     return <h1>Landing page</h1>
 }
 
+LandingPage.getInitialProps = async () => {
+    
+    // Decide the domain to make request to
+    if(typeof window === "undefined"){
+        // On the server
+        console.log("trying hard")
+        const { data } = await axios.get(
+            "http://ingress-nginx-controller.kube-system.svc.cluster.local/api/users/currentuser",
+            {
+                headers : {
+                    Host : "ticketing.dev"
+                }
+            }
+        );
+        return data;
+        
+    } else {
+        // On the browser
+        const { data } = await axios.get("/api/users/currentuser");
+        return data;
+        
+    }
+
+    
+}
 export default LandingPage;
-// LandingPage.getInitialProps = async () => {
-//     const response = await axios.get('/api/users/currentuser');
-//     return response.data;
-// }
 
 /*
 
@@ -70,7 +91,7 @@ Cross namespace service communication
 
 In minikube the ingress addon is installed in the namespace kube-system instead of ingress-nginx
 
-
+https://stackoverflow.com/questions/62162209/ingress-nginx-errors-connection-refused
 
 
 

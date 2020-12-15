@@ -5,6 +5,7 @@ metadata :
   annotations:
     kkubernetes.io/ingress.class : nginx
     nginx.ingress.kubernetes.io/use-regex: 'true'
+    # nginx.ingress.kubernetes.io/auth-url: http://ingress-nginx-controller.kube-system.svc.cluster.local/authorize
 spec:
   rules:
     - host: ticketing.dev

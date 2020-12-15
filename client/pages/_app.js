@@ -6,9 +6,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 // every single component. Reason being the app file gets loaded every single time
 // one visits the application
 
-export default ({ Component, pageProps }) => {
+const __App = ({ Component, pageProps }) => {
     return <Component {...pageProps} />
 }
+export default __App;
 
 /* 
 
