@@ -22,14 +22,16 @@ const SignUp = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h1>Sign Up</h1>
-      <div style={{ width : '50%' }}>
+      <div style={{ width : '40%', margin : "auto" }}>
+      <div style={{ margin : 10 }}><h2>Sign Up</h2></div>
+      <div>
         <div className="form-group">
           <label>Email Address</label>
           <input
             className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email Id"
           />
         </div>
         <div className="form-group">
@@ -39,11 +41,13 @@ const SignUp = () => {
             className="form-control"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder ="Password"
           />
         </div>
       </div>
       {errors}
       <button className="btn btn-primary">SignUp</button>
+      </div>
     </form>
   );
 };
