@@ -1,37 +1,21 @@
-import axios from 'axios'; // Why not use the useRequest hook?? Reason being hooks are used inside components
-                           // and getInitialProps is not a component but a function
+import buildClient from '../api/build-client'; // Reusable API client for server and browser
+
+// Why not use the useRequest hook?? Reason being hooks are used inside components
+// and getInitialProps is not a component but a function
 
 // We are not allowed to fetch data from inside a component during a 
 //  server side rendering process. It can be done only using the getInitialProps
 
-const LandingPage =  ({ currentUser }) => {
-    console.log(currentUser);    
-    return <h1>Landing page</h1>
+
+const LandingPage =  ({ currentUser }) => {    
+    return currentUser ? <h1>You are signed in</h1> : <h1>You are not signed in</h1>
 }
 
-LandingPage.getInitialProps = async () => {
-    
-    // Decide the domain to make request to
-    if(typeof window === "undefined"){
-        // On the server
-        console.log("trying hard")
-        const { data } = await axios.get(
-            "http://ingress-nginx-controller.kube-system.svc.cluster.local/api/users/currentuser",
-            {
-                headers : {
-                    Host : "ticketing.dev"
-                }
-            }
-        );
-        return data;
-        
-    } else {
-        // On the browser
-        const { data } = await axios.get("/api/users/currentuser");
-        return data;
-        
-    }
-
+LandingPage.getInitialProps = async (context) => {
+    console.log("Landing Page")
+    const client = buildClient(context);    
+    const { data } = await client.get('/api/users/currentuser');
+    return data;
     
 }
 export default LandingPage;
