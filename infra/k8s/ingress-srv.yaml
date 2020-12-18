@@ -23,6 +23,16 @@ spec:
                   number : 3000
 
           - pathType: Prefix
+            path : /api/tickets/?(.*)
+            backend :
+              # serviceName : client-srv
+              # servicePort : 3000
+              service:
+                name : tickets-srv
+                port :
+                  number : 3000
+
+          - pathType: Prefix
             path : /?(.*)
             backend :
               # serviceName : client-srv
