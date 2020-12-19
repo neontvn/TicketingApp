@@ -1,0 +1,27 @@
+NATS - 10yr old production proven cloud native messaging system made for developers
+
+Custom Event Bus -
+
+1.  A custom event bus, which listened for any updates, had a copy of express running where in a client 
+    would make a request to it ( post ). It would then internally make a post request to another service  
+    using axios and the other service had its own copy of express that listened for this post request.
+
+2.  Whenever an event occurs the information of that event is sent across to all the services including the
+    the one that sent it.
+
+3.  For handling scenarios of a service going down, we had a memory store that would keep a track of all the
+    events happening in event-bus service and once the service is up or a new service gets added it could refer 
+    to that memory for any missed data/events.
+
+Nats-Streaming - 
+
+1.  To communicate with NATS Streaming, we will use a "client library" called 'node-nats-streaming'
+    For all event related stuff we will be using node-nats-streaming and axios & express will still be
+    used for the http requests.
+
+2.  In case of NATS, there are specific channels in the streaming server and each time an event occurs
+    it gets "published to a channel" (eg. tickets:updated channel) and only those services that have 
+    "subscribed to this channel" receive this event.
+
+3.  Nats streaming stores all the events in memory by default. Can also store in flat files on hard drive
+    or in MySQL / Postgres DB

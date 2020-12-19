@@ -1,0 +1,5 @@
+https://hub.docker.com/_/mongo
+https://docs.nats.io/
+https://hub.docker.com/_/nats-streaming
+https://www.npmjs.com/package/node-nats-streaming
+https://stackoverflow.com/questions/50675829/remove-node-modules-from-git-in-vscode
