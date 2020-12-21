@@ -20,11 +20,11 @@ spec :
              '4222',
              '-m',
              '8222',
-             '-hbi',
+             '-hbi',  # Heartbeat of the request. NATS server sends this req to a client to check its availability
              '5s',
-             '-hbt',
+             '-hbt',  # Time for client to respond to the server
              '5s',
-             '-hbf',
+             '-hbf',  # No of times a client can fail before being termed dead  
              '2',
              '-SD',
              '-cid',
