@@ -1,5 +1,6 @@
 export const natsWrapper = {
     client: {
+        
         // Custom implementation
         // publish:(subject:string, data:string, callback:()=> void)=>{
         //     callback();
