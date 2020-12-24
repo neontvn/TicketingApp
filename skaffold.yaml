@@ -36,3 +36,12 @@ build:
         manual:
           - src: 'src/**/.ts'
             dest: .
+    
+    - image: hungryshark/orders
+      context: orders
+      docker:
+        dockerfile : Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/.ts'
+            dest: .
