@@ -1,0 +1,30 @@
+All the tickets that are created in the Tickets service are to be referred in the orders service as well
+On each of the order doc we add the reference to the ticket that is to be purchased
+
+1. To associate an existing Order and Ticket together
+
+const ticket = await Ticket.findOne({});
+const order = await Order.findOne({});
+
+order.ticket = ticket
+await order.save()
+
+2. To associate an existing ticket with a *new* Order
+
+const ticket = await Ticket.findOne({});
+const order = Order.build({
+    ticket : ticket,
+    userId : "####",
+    status : OrderStatus.Created,
+    expiresAt : tomorrow 
+})
+await order.save()
+
+3. To fetch an existing order from the database with its associated ticket
+
+const order = await Order.findById("###").populate('ticket')  // gets the assocaited ticket as well
+// Now can access as : 
+        order.ticket.price, order.ticket.title etcetc.
+
+
+To get all this working we need to have a Ticket model as well
