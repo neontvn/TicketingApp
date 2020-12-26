@@ -46,6 +46,7 @@ ticketSchema.statics.build = (attrs :TicketAttrs) => {
 // If we find order, then the ticket is reserved.
 
 ticketSchema.methods.isReserved = async function(){
+    // this === the ticket document we just called 'isReserved'
     const existingOrder = await Order.findOne({
         ticket : this,
         status : {
