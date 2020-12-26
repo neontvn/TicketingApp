@@ -55,5 +55,7 @@ it('reserves a ticket', async () => {
             ticketId: ticket.id
         })
         .expect(201);
-        console.log(res.body)
-})
+        // console.log(res.body)
+});
+
+it.todo('emits an order created')

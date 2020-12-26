@@ -3,4 +3,4 @@ Route in Order Service
 /api/orders ( GET ) - Retrieve all active orders for the given user making request
 /api/orders/:id ( GET ) - Get details about a specific order
 /api/orders ( POST ) - Create an order to purchase a specific ticket
-/api/orders/:id ( DELETE ) - Cancel the order
+/api/orders/:id ( PUT/DELETE ) - Cancel the order
