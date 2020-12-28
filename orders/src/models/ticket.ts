@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { Order, OrderStatus } from './order';
 
 interface TicketAttrs {
+    id : string,
     title : string,
     price : number,
 }
@@ -37,7 +38,11 @@ const ticketSchema = new mongoose.Schema({
 
 // To call a method on model
 ticketSchema.statics.build = (attrs :TicketAttrs) => {
-    return new Ticket(attrs);
+    return new Ticket({
+        _id : attrs.id,
+        title : attrs.title,
+        price : attrs.price
+    });
 }
 
 // To call a method on Document
