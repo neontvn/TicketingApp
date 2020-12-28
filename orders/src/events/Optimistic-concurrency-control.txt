@@ -1,0 +1,21 @@
+Concurrency issue is one of the main issues of this application. There can be events which get
+processed out of order which results in inconsistent data.
+
+Therefore, we set a version field that makes sure the events are processed in order. Mongoose & mongodb
+have this feature of quick updating of version feature.
+
+Mongoose updates the version field of the document automatically and then sets off the update
+request to mongodb : For eg. Find record with id "xyz" and version 1 and set its price to 20
+
+Version number gets included whenever the primary service responsible for a record emits a CRUD event
+
+Implementing the same is done using mongoose-update-if-current module
+
+    > This plugin brings optimistic concurrency control to Mongoose documents by incrementing document version 
+    numbers on each save, and preventing previous versions of a document from being saved over the current 
+    version.
+
+    > Default behaviour is to use the schema's version key (__v by default) to implement concurrency control. 
+    The plugin can be configured to use timestamps (updatedAt by default) instead, if they are enabled on the 
+    schema.
+
