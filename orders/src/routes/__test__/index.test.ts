@@ -13,7 +13,6 @@ const buildTicket = async () => {
     return ticket;
 }
 
-
 it('Fetches order for a particular user', async () => {
 
     // Create tickets
