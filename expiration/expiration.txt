@@ -1,0 +1,9 @@
+This service handles the expiration of orders created
+
+Bull JS - Used for delayed messaging aspects
+
+Super charge your queues with a profesional front end and optional Redis hosting:
+
+1. Get a complete overview of all your queues.
+2. Inspect jobs, search, retry, or promote delayed jobs.
+3. Metrics and statistics and many more features.
