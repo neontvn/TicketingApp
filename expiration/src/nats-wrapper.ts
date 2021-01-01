@@ -17,7 +17,7 @@ class NatsWrapper {
         this._client = nats.connect(clusterId,clientId, { url });
         
         return new Promise((resolve, reject)=>{
-            this.client.on('connect',()=>{
+            this.client.on('connect',()=>{                
                 console.log("Connected to nats")
                 resolve();
             });

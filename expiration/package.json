@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@hungryshark/common": "^1.0.18",
+    "@hungryshark/common": "^1.0.19",
     "@types/bull": "^3.14.4",
     "bull": "^3.20.0",
     "node-nats-streaming": "^0.2.6",
