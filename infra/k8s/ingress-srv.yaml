@@ -43,6 +43,16 @@ spec:
                   number : 3000
 
           - pathType: Prefix
+            path : /api/payments/?(.*)
+            backend :
+              # serviceName : client-srv
+              # servicePort : 3000
+              service:
+                name : payments-srv
+                port :
+                  number : 3000
+
+          - pathType: Prefix
             path : /?(.*)
             backend :
               # serviceName : client-srv
