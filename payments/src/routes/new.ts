@@ -27,6 +27,8 @@ router.post('/api/payments',
     ],
     validateRequest,
     async (req: Request,res: Response)=>{
+        // Token - authorization to charge the user for money
+        // Stripe API is used to send the token and charge for money
         const { token, orderId } = req.body;
         const order = await Order.findById(orderId);
 
