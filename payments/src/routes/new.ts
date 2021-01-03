@@ -1,21 +1,22 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { 
-    BadRequestError, 
-    NotAuthorizedError, 
-    NotFoundError, 
-    OrderStatus, 
-    requireAuth, 
-    validateRequest 
+import {
+    BadRequestError,
+    NotAuthorizedError,
+    NotFoundError,
+    OrderStatus,
+    requireAuth,
+    validateRequest
 } from '@hungryshark/common';
 
 import { Order } from '../models/order';
-
+import { stripe } from '../stripe';
+import { Payment } from '../models/payment';
 
 const router = express.Router();
 
-router.post('/api/payments', 
-    requireAuth, 
+router.post('/api/payments',
+    requireAuth,
     [
         body('token')
             .not()
@@ -26,25 +27,40 @@ router.post('/api/payments',
             .isEmpty()
     ],
     validateRequest,
-    async (req: Request,res: Response)=>{
+    async (req: Request, res: Response) => {
+
         // Token - authorization to charge the user for money
         // Stripe API is used to send the token and charge for money
         const { token, orderId } = req.body;
         const order = await Order.findById(orderId);
 
-        if(!order){
+        if (!order) {
             throw new NotFoundError();
         }
 
-        if(order.userId!==req.currentUser!.id){
+        if (order.userId !== req.currentUser!.id) {
             throw new NotAuthorizedError();
         }
 
-        if(order.status===OrderStatus.Cancelled){
+        if (order.status === OrderStatus.Cancelled) {
             throw new BadRequestError("Cannot pay for a cancelled order");
         }
-        res.send({ success : true });
-});
+        
+        const charge = await stripe.charges.create({
+            currency: 'INR',
+            amount: order.price*100,
+            source: token,
+            description: 'My First Test Charge (created for API docs)',
+        });
+        
+        const payment = Payment.build({
+            orderId,
+            stripeId : charge.id
+        });
+        await payment.save();
+
+        res.status(201).send({ success: true });
+    });
 
 
 export { router as createChargeRouter };
