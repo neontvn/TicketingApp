@@ -6,12 +6,20 @@
 // We are not allowed to fetch data from inside a component during a
 //  server side rendering process. It can be done only using the getInitialProps
 
+import Link from 'next/link';
+
 const LandingPage = ({ currentUser, tickets }) => {
   const ticketList = tickets.map((ticket) => {
     return (
       <tr key={ticket.id}>
         <td>{ticket.title}</td>
         <td>{ticket.price}</td>
+        <td>  
+          <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
+              <a> View </a>
+          </Link>
+
+        </td>
       </tr>
     );
   });
@@ -23,6 +31,7 @@ const LandingPage = ({ currentUser, tickets }) => {
           <tr>
             <th>Title</th>
             <th>Price</th>
+            <th>Link</th>
           </tr>
         </thead>
         <tbody>{ticketList}</tbody>
