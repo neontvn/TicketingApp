@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import buildClient from "../api/build-client";
 import Header from "../components/header";
 
+//Root Component
+
 // This component receives 2 props as mentioned
 // Thin wrapper around a NextJS component named app (file)
 // All global css imports can be done here instead of doing on
@@ -12,7 +14,9 @@ const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
         <Header currentUser = { currentUser} />
-      <Component {...pageProps} />
+        <div className="container">
+        <Component currentUser = { currentUser}  {...pageProps} />
+      </div>
     </div>
   );
 };
@@ -32,8 +36,9 @@ AppComponent.getInitialProps = async (appContext) => {
 
     
     let pageProps = {};
+    // Manually invoke the LandingPage's getInitialProps function
     if(appContext.Component.getInitialProps){
-        pageProps = await appContext.Component.getInitialProps(appContext.ctx);
+        pageProps = await appContext.Component.getInitialProps(appContext.ctx, client, data.currentUser);
     }
     
     return {

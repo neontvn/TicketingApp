@@ -1,23 +1,49 @@
-import buildClient from '../api/build-client'; // Reusable API client for server and browser
+// import buildClient from '../api/build-client'; // Reusable API client for server and browser
 
 // Why not use the useRequest hook?? Reason being hooks are used inside components
 // and getInitialProps is not a component but a function
 
-// We are not allowed to fetch data from inside a component during a 
+// We are not allowed to fetch data from inside a component during a
 //  server side rendering process. It can be done only using the getInitialProps
 
+const LandingPage = ({ currentUser, tickets }) => {
+  const ticketList = tickets.map((ticket) => {
+    return (
+      <tr key={ticket.id}>
+        <td>{ticket.title}</td>
+        <td>{ticket.price}</td>
+      </tr>
+    );
+  });
+  return (
+    <div>
+      <h1>Tickets</h1>
+      <table className="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>{ticketList}</tbody>
+      </table>
+    </div>
+  );
+};
 
-const LandingPage =  ({ currentUser }) => {    
-    return currentUser ? <h1 >You are signed in</h1> : <h1>You are not signed in</h1>
-}
+LandingPage.getInitialProps = async (context, client, currentUser) => {
+  /* This actually resulted in the getCurrentUser call getting executed twice 
+        Hence the call for current user is removed from the component and the currentuser
+        prop is passed from the App component
+    */
 
-LandingPage.getInitialProps = async (context) => {
-    
-    const client = buildClient(context);    
-    const { data } = await client.get('/api/users/currentuser');
-    return data;
-    
-}
+  // const client = buildClient(context);
+  // const { data } = await client.get('/api/users/currentuser');
+  // return data;
+
+  const { data } = await client.get("/api/tickets");
+  return { tickets: data };
+};
 export default LandingPage;
 
 /*
@@ -50,7 +76,6 @@ But it is also possible that getInitialProps gets called inside the browser :
 
 ________________________________________________________________________________________
 */
-
 
 /*
 Making an axios request inside the getInitialProps function results in an error

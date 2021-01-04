@@ -22,8 +22,8 @@ const SignUp = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div style={{ width : '40%', margin : "auto" }}>
-      <div style={{ margin : 10 }}><h2>Sign Up</h2></div>
+      <div >
+      <h1>Sign Up</h1>
       <div>
         <div className="form-group">
           <label>Email Address</label>
