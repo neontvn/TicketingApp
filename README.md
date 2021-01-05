@@ -53,9 +53,17 @@ For eg.
 $ docker build -t username/auth .
 
 $ docker push username/auth:latest // Push the image to docker hub
-
 ```
 Note : Need to update my docker image name to yours in scripts from skaffold and k8s folders.
+
+Next create k8s secrets that allow you to store and manage sensitive information
+
+```
+$ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
+
+// [<STRIPE_SECRET_KEY> from stripe.com](https://stripe.com/docs/keys) 
+$ kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<STRIPE_SECRET_KEY>
+```
 
 Run the skaffold ( used for local k8s development). Skaffold watches the project source for changes and automatically builds, tags, deploys out application with the following command : 
 
