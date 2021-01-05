@@ -1,5 +1,7 @@
 # Ticketing App
 
+The Ticketing App is an E-Commerce app using Microservices built with Node, React, Docker and Kubernetes.
+
 # Tech Stack 
 
 This is a **Full Stack Application** in which a variety of technologies have been used. 
