@@ -14,7 +14,7 @@ On the frontend, I've used [React](https://reactjs.org/) and [Next JS](https://n
 1. Architect large, scalable apps using a collection of microservices
 2. Solved concurrency issues in a distributed systems environment
 3. Built a Server-Side Rendered React App to render data from your microservices
-4. Shared reusable code between multiple Express servers using custom NPM packages
+4. Shared reusable code between multiple Express servers using [custom NPM packages](https://github.com/neontvn/NPM-module)
 5. Written comprehensive tests to ensure each service works as designed
 
 
