@@ -3,7 +3,7 @@
 The Ticketing App is an E-Commerce Web app using Microservices built with Node, React, Docker and Kubernetes. This app currently works on localhost only and is yet to be deployed to the cloud.
 
 To run this application download the project folder and in the project root directory run 
-skaffold dev. 
+`skaffold dev`. 
 
 Note : Before running the above command please ensure that you have Minikube, Kubectl, Docker, Skaffold installed on your computer.
 
