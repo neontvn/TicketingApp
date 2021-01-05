@@ -4,6 +4,8 @@ The Ticketing App is an E-Commerce Web app using Microservices built with Node, 
 
 To run this application download the project folder and in the project root directory :  <br> 
 
+Note : Before running the following commands please ensure that you have [Minikube](https://minikube.sigs.k8s.io/docs/start/), [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), [Docker](https://docs.docker.com/engine/install/), [Skaffold](https://skaffold.dev/docs/install/) installed on your computer for the particular operating system.
+
 ## Run Minikube
 
 ```
@@ -33,10 +35,6 @@ skaffold dev
 Visit https://ticketing.dev in the browser.
 
 type: thisisunsafe in the browser window with security warning.
-
-
-Note : Before running the above command please ensure that you have [Minikube](https://minikube.sigs.k8s.io/docs/start/), [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), [Docker](https://docs.docker.com/engine/install/), [Skaffold](https://skaffold.dev/docs/install/) installed on your computer for the particular operating system.
-
 
 
 # Tech Stack 
