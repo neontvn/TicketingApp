@@ -100,5 +100,10 @@ Visit https://ticketing.dev in the browser.
 
 type: thisisunsafe in the browser window with security warning.
 
+## 
+
+To learn more about the docker and kubernetes terminology 
+
+ > check [this](https://github.com/neontvn/docker_k8s) repository or follow the offical documentation of [docker](https://docs.docker.com/), [kubernetes](https://kubernetes.io/docs/home/)
 
 
