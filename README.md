@@ -42,8 +42,9 @@ $ sudo vi /etc/hosts
 
 // minikube ip  host
 192.168.49.2    ticketing.dev
-
 ```
+##
+
 Create docker image of each and every service and push the image to your docker repository.
 
 ```
@@ -54,7 +55,8 @@ $ docker build -t username/auth .
 
 $ docker push username/auth:latest // Push the image to docker hub
 ```
-Note : Need to update my docker image name to yours in scripts from skaffold and k8s folders.
+**Note** : Need to update my docker image name to yours in scripts from skaffold and k8s folders.
+##
 
 Next create k8s secrets that allow you to store and manage sensitive information
 
@@ -65,6 +67,8 @@ $ kubectl create secret generic jwt-secret --from-literal=JWT_KEY=asdf
 $ kubectl create secret generic stripe-secret --from-literal=STRIPE_KEY=<STRIPE_SECRET_KEY>
 ```
 Learn [here](https://stripe.com/docs/keys) on how to get your secret key & publisher key from stripe.com
+
+##
 
 Run the skaffold ( used for local k8s development). Skaffold watches the project source for changes and automatically builds, tags, deploys out application with the following command : 
 
@@ -90,6 +94,7 @@ payments-mongo-deployment-c89cb4fc7-4ggn7      1/1     Running   0          23s
 tickets-deployment-7b746fff9-tvhzw             1/1     Running   0          23s
 tickets-mongo-deployment-54f456bd95-hv9fb      1/1     Running   0          22s
 ```
+##
 
 Visit https://ticketing.dev in the browser.
 
