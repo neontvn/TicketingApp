@@ -15,6 +15,15 @@ Enable ingress
 minikube addons enable ingress
 ```
 
+Also add the minikube ip and hostname to /etc/hosts
+
+```
+$ sudo vi /etc/hosts
+
+// minikube ip  host
+192.168.49.2    ticketing.dev
+
+```
 
 ```
 skaffold dev
