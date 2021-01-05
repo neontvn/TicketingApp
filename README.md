@@ -13,7 +13,6 @@ Enable ingress
 
 ```
 minikube addons enable ingress
-
 ```
 
 
