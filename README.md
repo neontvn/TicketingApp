@@ -24,11 +24,16 @@ $ sudo vi /etc/hosts
 192.168.49.2    ticketing.dev
 
 ```
+Run the skaffold ( used for local k8s development). Skaffold watches the project source for changes and automatically builds, tags, deploys out application with the following command : 
 
 ```
 skaffold dev
 ```
- 
+
+Visit https://ticketing.dev in the browser.
+
+type: thisisunsafe in the browser window with security warning.
+
 
 Note : Before running the above command please ensure that you have [Minikube](https://minikube.sigs.k8s.io/docs/start/), [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/), [Docker](https://docs.docker.com/engine/install/), [Skaffold](https://skaffold.dev/docs/install/) installed on your computer for the particular operating system.
 
