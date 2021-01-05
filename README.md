@@ -2,8 +2,9 @@
 
 # Tech Stack 
 
-1. Next.js
-2. Node.js
+This is a **Full Stack Application** in which a variety of technologies have been used. 
+
+On the frontend, I've used [React](https://google.com) and Next JS to present content to users. Each service is created using Node and Express. Data for each service is held in either a Mongo database or Redis. The entire app is deployed and runs in Docker containers executed in a Kubernetes cluster. Also, almost all of the code in this project is written with Typescript.
 
 # Key Learning
 
