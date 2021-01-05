@@ -12,10 +12,10 @@ On the frontend, I've used [React](https://reactjs.org/) and [Next JS](https://n
 # Key Learning
 
 1. Architect large, scalable apps using a collection of microservices
-2. Solve concurrency issues in a distributed systems environment
-3. Build a Server-Side Rendered React App to render data from your microservices
-4. Share reusable code between multiple Express servers using custom NPM packages
-5. Write comprehensive tests to ensure each service works as designed
+2. Solved concurrency issues in a distributed systems environment
+3. Built a Server-Side Rendered React App to render data from your microservices
+4. Shared reusable code between multiple Express servers using custom NPM packages
+5. Written comprehensive tests to ensure each service works as designed
 
 
 ## 
@@ -44,6 +44,19 @@ $ sudo vi /etc/hosts
 192.168.49.2    ticketing.dev
 
 ```
+Create docker image of each and every service and push the image to your docker repository.
+
+```
+$ docker build -t your_docker_username/ service_name .
+
+For eg. 
+$ docker build -t username/auth .
+
+$ docker push username/auth:latest // Push the image to docker hub
+
+```
+Note : Need to update my docker image name to yours in scripts from skaffold and k8s folders.
+
 Run the skaffold ( used for local k8s development). Skaffold watches the project source for changes and automatically builds, tags, deploys out application with the following command : 
 
 ```
