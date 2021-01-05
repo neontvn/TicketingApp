@@ -36,13 +36,19 @@ To check if the pods have started successfully enter the following command :
 
 ```
 $ kubectl get pods
-NAME                              READY   STATUS    RESTARTS   AGE
-client-depl-99b7fcdcb-jhttp       1/1     Running   0          3m22s
-comments-depl-69578db79c-jzdnh    1/1     Running   0          3m22s
-event-bus-depl-7c5b75b7f4-m5qw6   1/1     Running   0          3m22s
-moderation-depl-d7b49bfbc-cgl2l   1/1     Running   0          3m22s
-posts-depl-78647cffd4-7gtzx       1/1     Running   0          3m22s
-query-depl-656f9b6b58-bv7g7       1/1     Running   0          3m22s
+NAME                                           READY   STATUS    RESTARTS   AGE
+auth-deployment-57d779fd9-48s9v                1/1     Running   0          24s
+auth-mongo-deployment-579c6dbd8f-69jbv         1/1     Running   0          23s
+client-deployment-f5cfc5b8d-k2lxp              1/1     Running   0          23s
+expiration-deployment-6bb67856b4-jkkbl         1/1     Running   0          23s
+expiration-redis-deployment-5b58b869fd-hmq5f   1/1     Running   0          23s
+nats-deployment-76479997ff-lpss8               1/1     Running   0          23s
+orders-deployment-5c68dff5c9-dq6hl             1/1     Running   0          23s
+orders-mongo-deployment-6896c8b9-42vpd         1/1     Running   0          23s
+payments-deployment-68d4c7f4ff-nfsxb           1/1     Running   0          23s
+payments-mongo-deployment-c89cb4fc7-4ggn7      1/1     Running   0          23s
+tickets-deployment-7b746fff9-tvhzw             1/1     Running   0          23s
+tickets-mongo-deployment-54f456bd95-hv9fb      1/1     Running   0          22s
 ```
 
 Visit https://ticketing.dev in the browser.
