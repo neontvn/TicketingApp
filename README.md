@@ -1,6 +1,6 @@
 # Ticketing App
 
-The Ticketing App is an E-Commerce Web app using Microservices built with Node, React, Docker and Kubernetes. This app currently works on localhost only and is yet to be deployed to the cloud.
+The Ticketing App is an E-Commerce Web app using Microservices built with Node, React, Docker and Kubernetes. This app is in its first version and currently works on localhost only & is yet to be deployed to the cloud.
 
 
 # Tech Stack 
