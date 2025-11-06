@@ -1,38 +1,44 @@
-apiVersion : apps/v1
-kind : Deployment
-metadata :
+apiVersion: apps/v1
+kind: Deployment
+metadata:
   name: auth-depl
-spec :
-  replicas : 1
+
+spec:
+  replicas: 1
   selector:
-    matchLabels : 
-      app : auth
-  template :
-    metadata : 
+    matchLabels:
+      app: auth
+
+  template:
+    metadata:
       labels:
-        app : auth
-    spec : 
-      containers :
+        app: auth
+
+    spec:
+      containers:
         - name: auth
-          image : hungryshark/auth:latest
-          env: 
-            - name : MONGO_URI
-              value : 'mongodb://auth-mongo-srv:27017/auth'
-            - name : JWT_KEY
-              valueFrom :
+          image: hungryshark/auth:latest
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://auth-mongo-srv:27017/auth'
+            - name: JWT_KEY
+              valueFrom:
                 secretKeyRef:
-                  name : jwt-secret
-                  key : JWT_KEY 
+                  name: jwt-secret
+                  key: JWT_KEY
+
 ---
-apiVersion : v1
-kind : Service
-metadata: 
-  name : auth-srv
-spec :
-  selector :
-    app : auth
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-srv
+
+spec:
+  selector:
+    app: auth
+
   ports:
-    - name : auth
-      protocol : TCP
-      port : 3000
-      targetPort : 3000
+    - name: auth
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

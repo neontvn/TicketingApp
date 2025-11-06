@@ -2,11 +2,11 @@ Testing with Microservices
 
 Jest - JavaScript Testing Framework
 
-When jest starts 
-    -   It will start the in-memory copy of Mongodb
-    -   Start our express app
-    -   Use supertest library to make fake requests to our express app
-    -    Run the assertions
+When jest starts:
+    - It will start the in-memory copy of MongoDB
+    - Start our express app
+    - Use supertest library to make fake requests to our express app
+    - Run the assertions
     
 Jest doesnt support typescript out-of-the-box. Therefore I've installed ts-jest for the
 typescript compatibility

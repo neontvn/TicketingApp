@@ -1,65 +1,65 @@
 apiVersion: skaffold/v2alpha3
 kind: Config
-deploy:            #List out all the config files we need in our cluster
-  kubectl: 
+
+deploy:  # List out all the config files we need in our cluster
+  kubectl:
     manifests:
       - ./infra/k8s/*
-build: 
+build:
   local:
     push: false
+
   artifacts:
     - image: hungryshark/auth
       context: auth
       docker:
-        dockerfile : Dockerfile
+        dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/.ts'
-            dest: .             # where to sync this file to inside of our running container the dot 
-                                # means basically just take wherever the file was found from and throw
-                                # it to the corresponding path inside the container.
+          - src: 'src/**/*.ts'
+            dest: .
 
     - image: hungryshark/client
       context: client
       docker:
-        dockerfile : Dockerfile
+        dockerfile: Dockerfile
       sync:
         manual:
           - src: '**/*.js'
-            dest: .  
-            
+            dest: .
+
     - image: hungryshark/tickets
       context: tickets
       docker:
-        dockerfile : Dockerfile
+        dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/.ts'
+          - src: 'src/**/*.ts'
             dest: .
-    
+
     - image: hungryshark/orders
       context: orders
       docker:
-        dockerfile : Dockerfile
+        dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/.ts'
+          - src: 'src/**/*.ts'
             dest: .
 
     - image: hungryshark/expiration
       context: expiration
       docker:
-        dockerfile : Dockerfile
+        dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/.ts'
+          - src: 'src/**/*.ts'
             dest: .
-    
+
     - image: hungryshark/payments
       context: payments
       docker:
-        dockerfile : Dockerfile
+        dockerfile: Dockerfile
       sync:
         manual:
-          - src: 'src/**/.ts'
+          - src: 'src/**/*.ts'
             dest: .

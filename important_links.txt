@@ -1,5 +1,7 @@
-https://hub.docker.com/_/mongo
-https://docs.nats.io/
-https://hub.docker.com/_/nats-streaming
-https://www.npmjs.com/package/node-nats-streaming
-https://stackoverflow.com/questions/50675829/remove-node-modules-from-git-in-vscode
+Important Links and Resources:
+
+1. MongoDB Docker Hub: https://hub.docker.com/_/mongo
+2. NATS Documentation: https://docs.nats.io/
+3. NATS Streaming Docker: https://hub.docker.com/_/nats-streaming
+4. Node NATS Streaming NPM: https://www.npmjs.com/package/node-nats-streaming
+5. Git Configuration: https://stackoverflow.com/questions/50675829/remove-node-modules-from-git-in-vscode

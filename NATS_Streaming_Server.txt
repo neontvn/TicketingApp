@@ -1,4 +1,4 @@
-NATS - 10yr old production proven cloud native messaging system made for developers
+NATS - 10yr old production proven cloud native messaging system made for developers.
 
 Custom Event Bus -
 
