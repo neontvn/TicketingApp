@@ -1,10 +1,10 @@
 # Ticketing App - E-Commerce Microservices Platform
 
-A production-grade, scalable e-commerce web application demonstrating advanced microservices architecture, event-driven communication, and containerized deployment patterns using modern cloud-native technologies.
+A scalable e-commerce web application demonstrating advanced microservices architecture, event-driven communication and containerized deployment patterns using modern cloud-native technologies.
 
 ## 📋 Overview
 
-The Ticketing App is a sophisticated microservices-based e-commerce platform built to showcase comprehensive understanding of distributed systems, asynchronous event-driven architecture, and containerized deployment. The application handles complex scenarios like ticket creation, order management, payment processing, and order expiration - all while maintaining data consistency across multiple independent services.
+The Ticketing App is a sophisticated microservices-based e-commerce platform built to showcase comprehensive understanding of distributed systems, asynchronous event-driven architecture and containerized deployment. The application handles complex scenarios like ticket creation, order management, payment processing and order expiration - all while maintaining data consistency across multiple independent services.
 
 **Current Status:** v1.0 - Local development on Kubernetes (Minikube). Ready for cloud deployment.
 
@@ -14,62 +14,7 @@ The Ticketing App is a sophisticated microservices-based e-commerce platform bui
 
 ### System Architecture Overview
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        KUBERNETES CLUSTER                           │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                       │
-│  ┌──────────────────────────────────────────────────────────────┐   │
-│  │                      INGRESS CONTROLLER (NGINX)              │   │
-│  │         Routes HTTP requests to appropriate services         │   │
-│  └──────────────────────────────────────────────────────────────┘   │
-│                                 │                                     │
-│        ┌────────────────────────┼────────────────────────┐           │
-│        │                        │                        │           │
-│  ┌─────▼──────┐        ┌────────▼────────┐      ┌───────▼──────┐   │
-│  │   AUTH      │        │   TICKETS       │      │    ORDERS    │   │
-│  │  SERVICE    │        │    SERVICE      │      │   SERVICE    │   │
-│  └─────┬──────┘        └────────┬────────┘      └───────┬──────┘   │
-│        │                        │                        │           │
-│  ┌─────▼──────┐        ┌────────▼────────┐      ┌───────▼──────┐   │
-│  │  AUTH DB   │        │  TICKETS DB     │      │  ORDERS DB   │   │
-│  │  (Mongo)   │        │   (Mongo)       │      │  (Mongo)     │   │
-│  └────────────┘        └─────────────────┘      └──────────────┘   │
-│                                                                       │
-│  ┌──────────────────────────────────────────────────────────────┐   │
-│  │           EVENT BUS: NATS STREAMING SERVER                   │   │
-│  │   Asynchronous publish-subscribe for inter-service comms    │   │
-│  └──────────────────────────────────────────────────────────────┘   │
-│        ▲          ▲                    ▲            ▲                │
-│        │          │                    │            │                │
-│  ┌─────┴──────────┴────────────┐   ┌──┴────────┐   │                │
-│  │                             │   │           │   │                │
-│  ┌──────────────┐   ┌─────────┐│   │ EXPIRATION│   │ PAYMENTS      │
-│  │   PAYMENTS   │   │EXPIRATION│   │  SERVICE  │   │  SERVICE      │
-│  │   SERVICE    │   │ SERVICE  │   │  (Redis)  │   │ (Listen Mode) │
-│  └──────┬───────┘   └────┬────┘│   │           │   │               │
-│         │                │     └───┘ LISTENER  │   └───────────────┘
-│  ┌──────▼─────────┐      │                     │
-│  │  PAYMENTS DB   │      │                     │
-│  │   (Mongo)      │      │                     │
-│  └────────────────┘      │                     │
-│                          │                     │
-│                    ┌─────▼──────────────────┐  │
-│                    │  EXPIRATION CACHE      │  │
-│                    │  (Redis for timers)    │  │
-│                    └────────────────────────┘  │
-│                                                 │
-└─────────────────────────────────────────────────────────────────────┘
-        │
-        │ (HTTP/HTTPS)
-        ▼
-┌─────────────────────────────────────────────────────────────────────┐
-│              CLIENT APPLICATION (Next.js/React SSR)                 │
-│  - Server-Side Rendering for improved SEO & performance            │
-│  - Session management via HTTP cookies                             │
-│  - Real-time UI updates via API polling                            │
-└─────────────────────────────────────────────────────────────────────┘
-```
+![System Architecture](./asset/image.png)
 
 ### Service Architecture
 
@@ -147,8 +92,6 @@ SERVICE TOPOLOGY:
 
 ### 1. **Microservices Architecture**
 
-**What It Is:**
-A software design pattern where a large application is decomposed into small, independent services that communicate over well-defined APIs. Each service handles a specific business capability.
 
 **Implementation in This Project:**
 - **Auth Service:** Handles all authentication concerns
@@ -168,7 +111,7 @@ A software design pattern where a large application is decomposed into small, in
 **What It Is:**
 An asynchronous communication pattern where services don't directly call each other. Instead, they publish events to a message broker and subscribe to events they care about.
 
-**How We Implemented It:**
+**How I Implemented It:**
 - Services publish domain events (e.g., `ticket:created`, `order:created`, `payment:success`)
 - Event Channels group related events
 - Services subscribe to channels and react to events
@@ -226,11 +169,7 @@ Since there's no central database, we handle consistency through events:
 - **Security:** API calls can be made server-side with secure credentials
 - **Hydration:** Client receives pre-rendered HTML, then React takes over
 
-**Implementation:**
-- `getInitialProps()` runs on server during first request
-- Fetches data from microservices server-to-server (within cluster)
-- Returns pre-rendered HTML to client
-- React hydrates on client for interactivity
+
 
 ### 5. **Container Orchestration with Kubernetes**
 
@@ -302,7 +241,7 @@ db.Ticket.findByIdAndUpdate(
 
 ---
 
-## 📚 Key Learning Outcomes
+## Key Learning Outcomes
 
 1. **Architecture large, scalable apps** using microservices patterns
 2. **Solved concurrency issues** in distributed systems (optimistic locking, event-based consistency)
@@ -317,7 +256,7 @@ db.Ticket.findByIdAndUpdate(
 
 ---
 
-## 🚀 Setup & Running
+## Setup & Running
 
 ### Prerequisites
 
@@ -458,12 +397,10 @@ TicketingApp/
 ```
 1. User logged in (Auth token obtained)
 2. POST /api/tickets
-   ↓
 3. Tickets Service receives request
 4. Validates input & auth
 5. Creates ticket in MongoDB
 6. Publishes "ticket:created" event to NATS
-   ↓
 7. Orders Service listens (if needed for order constraints)
 8. Updates its view of available tickets
 ```
@@ -473,20 +410,17 @@ TicketingApp/
 ```
 1. User selects ticket
 2. POST /api/orders
-   ↓
+
 3. Orders Service receives request
 4. Checks ticket availability (Tickets service data)
 5. Creates order in MongoDB
 6. Publishes "order:created" event
-   ↓
 7. Multiple services react:
    - Payments Service: Awaits payment
    - Expiration Service: Sets 15-min timeout
    - Tickets Service: Reserves the ticket
-   ↓
 8. User makes payment
 9. Payments Service publishes "charge:created" event
-   ↓
 10. Orders Service transitions order to "awaiting:shipment"
     (In real app, would trigger fulfillment)
 ```
@@ -495,17 +429,13 @@ TicketingApp/
 
 ```
 1. Order created (expires in 15 minutes)
-   ↓
 2. Expiration Service receives "order:created" event
 3. Stores timer in Redis
-   ↓
 4. After 15 minutes, timer fires
 5. Expiration Service publishes "expiration:complete" event
-   ↓
 6. Orders Service receives event
 7. If payment hasn't been received, cancels order
 8. Publishes "order:cancelled" event
-   ↓
 9. Tickets Service receives event
 10. Releases the reserved ticket back to pool
 ```
@@ -522,12 +452,4 @@ TicketingApp/
 - **Next.js Documentation:** [nextjs.org/docs](https://nextjs.org/docs)
 
 ---
-
-## 📝 License
-
-This project is for educational purposes.
-
----
-
-**Last Updated:** November 5, 2025
 
